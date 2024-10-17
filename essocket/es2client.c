@@ -30,9 +30,12 @@ void main()
     fgets(str1, DIM, stdin); // uso l'fgets perchè lo scanf non legge gli spazi
     // leggo dal server
     write(socketfd, str1, sizeof(str1));
+    int lunghezzastringa = strlen(str1);
     // leggo dal server
     read(socketfd, str1, strlen(str1));
     int contatore= atoi(str1);
+   
     printf("il totale delle vocali sono: %d \n", contatore);
+    printf("il totale delle consonanti sono: %d \n", lunghezzastringa-contatore-1); //levo alla stringa totale il numero delle vocali ed il carattere terminatore
     close(socketfd);
 }
