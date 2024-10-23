@@ -34,7 +34,6 @@ void main()
 
     while (1)
     {
-        int palindromia = 1;
         printf("server in ascolto......\n");
         fflush(stdout);
 
