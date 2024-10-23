@@ -41,29 +41,19 @@ void main()
         soa = accept(socketfd, (struct sockaddr *)&addr_remoto, &fromlen);
         // legge dal client
         read(soa, str1, sizeof(str1));
-
         printf("Stringa ricevuta: %s\n", str1);
-
-        int length = strlen(str1)-1;
-        int j = length;
-        for (int i = 0; i < length; i++)
+        char carattere;
+        int contatore = 0;
+        read(soa, &carattere, sizeof(carattere));
+        for (int i = 0; i < strlen(str1); i++)
         {
-            j--;
-            if (str1[i] != str1[j])
+            if (carattere == str1[i])
             {
-                palindromia = 0;
+                contatore++;
             }
         }
-        char str2[40];
+        sprintf(str2, "nella stringa, il carattere %c, si ripete %d volte\n", carattere, contatore);
 
-        if (palindromia != 0)
-        {
-            strcpy(str2, "La stringa è palindroma");
-        }
-        else
-        {
-            strcpy(str2, "La stringa non è palindroma");
-        }
         printf("Stringa inviata : %s\n", str2);
         write(soa, str2, strlen(str2));
         close(soa);
